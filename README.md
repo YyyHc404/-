@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 10577095231057709523124.70.187.180### 公告
 
 由于以前的v2有白屏bug（偶尔需要点击2次才能展示内容，无法debug），个人无法解决，v2以前全新换皮肤。如果你要研究可以查看分支：【20210101v2】
@@ -155,3 +156,7 @@ https://gitee.com/dubai03/Codegenerator_v2
 
 ###牛油果
 [![Giteye chart](https://chart.giteye.net/gitee/bdj/SpringBoot_v2/Q9GZ48L3.png)](https://giteye.net/chart/Q9GZ48L3)
+=======
+# stu3
+学籍管理系统
+>>>>>>> 0ed281303829bf42bf4298685f5709a259c450ab
