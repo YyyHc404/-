@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
 <head>
+	
     <th:block th:include="include :: header('列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
 <div class="layui-card-body">
-<form class="layui-form">
-    
-      
-											
+<form class="layui-form">		
 							<div class="layui-form-item">
 			                    <label class="layui-form-label">学生姓名</label>
 			                    <div class="layui-input-block">
@@ -113,41 +111,48 @@
 			                    <div class="layui-input-block">
 			                        <input type="text" name="phoneNumber" autocomplete="off"  th:value="${studentInfo.phoneNumber}" class="layui-input">
 			                    </div>
-			         			 
+			         			<button type="button" class="layui-btn" lay-on="editPhoneNumber" >修改手机号</button>
 			                </div>
-	 <button class="pear-btn pear-btn-primary pear-btn-sm" lay-on="editPhoneNumber" title="修改手机号">修改手机号
-    </button>
-
-    <button type="button" class="pear-btn pear-btn-primary pear-btn-sm" lay-on="editPassWord" title="修改密码">修改密码
-    </button>		                
-
-    	
+    						<button type="button" class="layui-btn" lay-on="editPassWord" >修改密码</button>		           
 	</form>
+	     
+	
 </div>
 </div>
 </body>
 <th:block th:include="include :: footer"/>
-<script>
 
+<script>
+	
 	layui.use(['layer','util'], function () {
 		 var $ = layui.$;
 		  var layer = layui.layer;
 		  var util = layui.util;
 		let MODULE_PATH = rootPath+"/BasicController/";
-		 //修改
-       util.on('lay-on', {
-			    'editphone': function(){
-			      layer.open({
-			        type: 2,
-			        area: ['680px', '520px'],
-			        content: MODULE_PATH + "/editphone/2",
-
-			      });
-			    }
+       util.event('lay-on', {
+    	   
+    	    editPhoneNumber: function(){
+    	    	alert("a");
+    	    	 layer.open({
+    	                type: 2,
+    	                title: '修改手机号',
+    	                shade: 0.1,
+    	                area: ['500px', '500px'],
+    	                content: MODULE_PATH + 'editphone'
+    	            });
+			 },
+			 editPassWord: function(){
+    	    	 layer.open({
+    	                type: 2,
+    	                title: '修改密码',
+    	                shade: 0.1,
+    	                area: ['500px', '500px'],
+    	                content: MODULE_PATH + 'editpassword'
+    	            });
+			 }
 		  
 		  })
 		
 	})
 </script>
-
 </html>

@@ -64,16 +64,16 @@ spring:
     druid:
      # 主库数据源
      master:
-        url: jdbc:mysql://localhost:3306/stu_manage_gitee3?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/stu_manage_gitee?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
         username: root
-        password: '020803'
+        password: '13032637048'
         #树熊数据源
 
      slave:
         enabled : false
-        url: jdbc:mysql://localhost:3306/stu_manage_gitee3?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/stu_manage_gitee?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
         username: root
-        password: '020803'
+        password: '13032637048'
         #配置初始化连接数大小
      initial-size: 10
      # 最大连接数

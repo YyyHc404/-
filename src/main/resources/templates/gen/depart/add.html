@@ -22,7 +22,7 @@
 							<div class="layui-form-item">
 			                    <label class="layui-form-label">院系名称</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" lay-verify="Name" name="departName" autocomplete="off" placeholder="请输入院系名称" class="layui-input">
+			                        <input type="text" name="departName" autocomplete="off" placeholder="" class="layui-input">
 			                    </div>
 			                </div>
 									
@@ -50,30 +50,7 @@
         let $ = layui.jquery;
         let MODULE_PATH = rootPath+"/DepartController";
 		
-		form.verify({
-              Name: function(value){
-				
-                if(value.length <= 2){
-                    return '学校名称至少3个字符！';
-                }
-                var msg = "";
-                $.ajax({
-                    url: MODULE_PATH+'/checkNameUnique',
-                    data: "departName="+value,
-                    dataType: 'json',
-                    type: 'post',
-                    async:false,
-                    success: function (result) {
-                            msg=result;
-                    }
-                });
-                if (msg == 1) {
-                   return "已有相同数据";
-                }
-
-            }
-        });
-        
+		
 
         //保存
         form.on('submit(depart-save)', function (data) {

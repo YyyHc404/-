@@ -78,6 +78,9 @@ public class StudentController extends BaseController{
         return prefix + "/list";
     }
 	
+
+	
+	
 	
 	
 	/**

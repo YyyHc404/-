@@ -12,8 +12,6 @@ import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.MajorMapper;
 import com.fc.v2.model.auto.Major;
 import com.fc.v2.model.auto.MajorExample;
-import com.fc.v2.model.auto.School;
-import com.fc.v2.model.auto.SchoolExample;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.util.SnowflakeIdWorker;
 import com.fc.v2.util.StringUtils;
@@ -148,16 +146,5 @@ public class MajorService implements BaseService<Major, MajorExample>{
 		return majorMapper.updateByPrimaryKeySelective(major);
 	}
 
-	/**
-	 * 检查学校name
-	 * @param schoolName
-	 * @return
-	 */
-	public int checkNameUnique(Major major){
-		MajorExample example=new MajorExample();
-		example.createCriteria().andMajorNameEqualTo(major.getMajorName());
-		List<Major> list=majorMapper.selectByExample(example);
-		return list.size();
-	}
-	
+
 }

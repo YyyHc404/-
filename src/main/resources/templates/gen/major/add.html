@@ -12,7 +12,7 @@
 							<div class="layui-form-item">
 			                    <label class="layui-form-label">专业名称</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="majorName" lay-verify="Name" autocomplete="off" placeholder="" class="layui-input">
+			                        <input type="text" name="majorName" autocomplete="off" placeholder="" class="layui-input">
 			                    </div>
 			                </div>
 									
@@ -41,35 +41,8 @@
         let MODULE_PATH = rootPath+"/MajorController";
 
 
-		form.verify({
-              Name: function(value){
-				
-                if(value.length <= 1){
-                    return '专业名称至少2个字符！';
-                }
-                var msg = "";
-                $.ajax({
-                    url: MODULE_PATH+'/checkNameUnique',
-                    data: "majorName="+value,
-                    dataType: 'json',
-                    type: 'post',
-                    async:false,
-                    success: function (result) {
-                            msg=result;
-                    }
-                });
-                if (msg == 1) {
-                   return "已有相同数据";
-                }
-
-            }
-        });
-        
-
-
         //保存
         form.on('submit(major-save)', function (data) {
-			console.log(data.field);
         	let loader = layer.load();
             $.ajax({
                 url: MODULE_PATH+'/add',
