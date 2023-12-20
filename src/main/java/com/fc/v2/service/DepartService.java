@@ -5,6 +5,10 @@ import java.util.Arrays;
 
 import com.fc.v2.mapper.auto.SchoolMapper;
 import com.fc.v2.model.auto.SchoolExample;
+import com.fc.v2.model.auto.TsysUser;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -13,6 +17,7 @@ import cn.hutool.core.util.StrUtil;
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.DepartMapper;
+import com.fc.v2.model.auto.Class;
 import com.fc.v2.model.auto.Depart;
 import com.fc.v2.model.auto.DepartExample;
 import com.fc.v2.model.auto.School;
@@ -56,7 +61,9 @@ public class DepartService implements BaseService<Depart, DepartExample>{
 	        //	testExample.setOrderByClause("depart_id ASC");
 	        //}
 	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
-	        List<Depart> list= departMapper.selectByExample(testExample);
+	        Subject currentUser = SecurityUtils.getSubject();
+	        TsysUser tu = (TsysUser) currentUser.getPrincipal();
+	        List<Depart> list = departMapper.selectBySchoolId(tu.getSchoolId());
 	        PageInfo<Depart> pageInfo = new PageInfo<Depart>(list);
 	        return  pageInfo;
 	 }

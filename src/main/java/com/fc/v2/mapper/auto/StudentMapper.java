@@ -25,6 +25,7 @@ public interface StudentMapper {
     int insertSelective(Student record);
 
     List<Student> selectByExample(StudentExample example);
+    List<Student> selectBySchoolId(String schoolId);
 		
     Student selectByPrimaryKey(String id);
 		

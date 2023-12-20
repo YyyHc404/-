@@ -1,5 +1,6 @@
 package com.fc.v2.mapper.auto;
 
+import com.fc.v2.model.auto.Class;
 import com.fc.v2.model.auto.Depart;
 import com.fc.v2.model.auto.DepartExample;
 import com.fc.v2.model.auto.School;
@@ -35,6 +36,7 @@ public interface DepartMapper {
     int insertSelective(Depart record);
 
     List<Depart> selectByExample(DepartExample example);
+    List<Depart> selectBySchoolId(String schoolId);
 		
     Depart selectByPrimaryKey(String id);
 		
