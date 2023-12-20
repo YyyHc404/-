@@ -5,7 +5,6 @@ import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.model.auto.Major;
-import com.fc.v2.model.auto.School;
 import com.fc.v2.service.MajorService;
 import com.fc.v2.util.StringUtils;
 import com.github.pagehelper.PageInfo;
@@ -71,7 +70,6 @@ public class MajorController extends BaseController{
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
-		
         return prefix + "/add";
     }
 	
@@ -86,7 +84,9 @@ public class MajorController extends BaseController{
 	@RequiresPermissions("gen:major:add")
 	@ResponseBody
 	public AjaxResult add(Major major){
-
+		if (StringUtils.isEmpty(major.getMajorId())) {
+			return error();
+		}
 		int b=majorService.insertSelective(major);
 		if(b>0){
 			return success();
@@ -94,8 +94,6 @@ public class MajorController extends BaseController{
 			return error();
 		}
 	}
-	
-
 	
 	/**
 	 * 删除
@@ -159,23 +157,7 @@ public class MajorController extends BaseController{
 	}
 
     
-    /**
-	 * 检查角色
-	 * @param 
-	 * @return
-	 */
-	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
-	@PostMapping("/checkNameUnique")
-	@ResponseBody
-	public int checkNameUnique(Major major){
-		int b=majorService.checkNameUnique(major);
-		if(b>0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
+    
 
 	
 }

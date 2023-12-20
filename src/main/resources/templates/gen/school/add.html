@@ -44,8 +44,8 @@
 		  form.verify({
               Name: function(value){
 				
-                if(value.length <= 3){
-                    return '学校名称至少4个字符！';
+                if(value.length <= 2){
+                    return '学校名称至少得4个字符啊';
                 }
                 var msg = "";
                 $.ajax({

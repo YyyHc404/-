@@ -56,7 +56,6 @@ public class AjaxResult extends HashMap<String, Object>
         return json;
     }
 
-   
     /**
      * 返回成功消息
      * 

@@ -8,7 +8,10 @@
 
   </resultMap>
 
- 
+  <resultMap id="BaseResultMap2" type="com.fc.v2.model.auto.School">
+    <result column="school_id" jdbcType="VARCHAR" property="schoolId" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+  </resultMap>
   
   <sql id="Example_Where_Clause">
     <where>
