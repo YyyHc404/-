@@ -6,7 +6,9 @@ import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.model.auto.Depart;
 import com.fc.v2.model.auto.School;
+import com.fc.v2.model.auto.TsysUser;
 import com.fc.v2.service.DepartService;
+import com.fc.v2.util.ShiorUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -89,6 +91,8 @@ public class DepartController extends BaseController{
 	@RequiresPermissions("gen:depart:add")
 	@ResponseBody
 	public AjaxResult add(Depart depart){
+		TsysUser cu =  ShiorUtil.getCurrentUser();
+		depart.setSchoolId(cu.getSchoolId());
 		int b=departService.insertSelective(depart);
 		if(b>0){
 			return success();

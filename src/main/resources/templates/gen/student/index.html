@@ -104,6 +104,7 @@
 			                        <input type="text" name="political" autocomplete="off" th:value="${studentInfo.political}" class="layui-input">
 			                    </div>
 			                </div>
+<<<<<<< HEAD
 									
 											
 							<div class="layui-form-item">
@@ -114,6 +115,29 @@
 			         			<button type="button" class="layui-btn" lay-on="editPhoneNumber" >修改手机号</button>
 			                </div>
     						<button type="button" class="layui-btn" lay-on="editPassWord" >修改密码</button>		           
+=======
+			                
+			                
+							 <div class="layui-form-item">
+							    <div class="layui-inline">
+							      <label class="layui-form-label">手机号</label>
+							      <div class="layui-input-inline layui-input-wrap">
+							        <span th:text="${studentInfo.phoneNumber}"></span>
+							      </div>
+							      <div class="layui-form-mid" style="padding: 0!important;"> 
+							        <button type="button" class="layui-btn layui-btn-primary" lay-on="editPhoneNumber">修改手机号</button>
+							      </div>
+							    </div>
+							  </div>		
+							 
+						  	<div class="layui-form-item">
+							    <div class="layui-input-block">
+							      <button type="button" class="layui-btn" lay-filter="demo1"  lay-on="editPassWord">修改密码</button>
+							    </div>
+							  </div>	
+							
+    						           
+>>>>>>> first
 	</form>
 	     
 	
@@ -132,7 +156,10 @@
        util.event('lay-on', {
     	   
     	    editPhoneNumber: function(){
+<<<<<<< HEAD
     	    	alert("a");
+=======
+>>>>>>> first
     	    	 layer.open({
     	                type: 2,
     	                title: '修改手机号',

@@ -86,7 +86,7 @@
        	  	      	political,
        	  	      	phone_number,
        	  	      	password,
-       	  	    	  	class_code
+       	  	    	class_code
        	  	
   </sql>
   
@@ -110,6 +110,27 @@
     from t_student
     where student_id = #{studentId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectBySchoolId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+   student_id,
+       	  	      	student_name,
+       	  	      	student_idcard,
+       	  	      	sex,
+       	  	      	ethnic,
+       	  	      	origin,
+       	  	      	address,
+       	  	      	graduate_name,
+       	  	      	political,
+       	  	      	phone_number,
+       	  	      	password,
+       	  	    	tc.class_code
+    from t_student ts 
+    left join t_class tc on ts.class_code = tc.class_code  
+    left join t_school tsc on tc.school_id = tsc.school_id 
+    where tsc.school_id = #{schoolId}
+  </select>
+  
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_student

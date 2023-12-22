@@ -140,15 +140,19 @@ public class AdminController extends BaseController {
 						// String authToken = ShiroUtils.getSessionId();
 						// return AjaxResult.successData(200, authToken);
 						TsysUser tu = (TsysUser) currentUser.getPrincipal();
-						if (tu.getRole().equals("student")) {
-							request.getSession().setAttribute("role", "student");	
-
-						}else {
-							request.getSession().setAttribute("role", "manager");	
-							
-						}
-						
-						
+						request.getSession().setAttribute("role", tu.getRole());
+						//switch
+//						switch (tu.getRole()) {
+//							case "student":
+//								request.getSession().setAttribute("role", "student");
+//								break;
+//							case "manager":
+//								request.getSession().setAttribute("role", "manager");
+//								break;
+//							case "supermanager":
+//								
+//								break;
+//						}
 						
 						
 						return AjaxResult.success();

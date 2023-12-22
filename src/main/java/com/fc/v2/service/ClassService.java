@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Arrays;
 
 import com.fc.v2.util.DateUtils;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -14,6 +18,7 @@ import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.ClassMapper;
 import com.fc.v2.model.auto.Class;
 import com.fc.v2.model.auto.ClassExample;
+import com.fc.v2.model.auto.TsysUser;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.util.SnowflakeIdWorker;
 import com.fc.v2.util.StringUtils;
@@ -54,7 +59,10 @@ public class ClassService implements BaseService<Class, ClassExample>{
 	        //	testExample.setOrderByClause("class_code ASC");
 	        //}
 	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
-	        List<Class> list= classMapper.selectByExample(testExample);
+	        
+	        Subject currentUser = SecurityUtils.getSubject();
+	        TsysUser tu = (TsysUser) currentUser.getPrincipal();
+	        List<Class> list = classMapper.selectBySchoolId(tu.getSchoolId());
 	        PageInfo<Class> pageInfo = new PageInfo<Class>(list);
 	        return  pageInfo;
 	 }

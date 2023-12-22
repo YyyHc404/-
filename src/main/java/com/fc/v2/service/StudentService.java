@@ -2,6 +2,9 @@ package com.fc.v2.service;
 
 import java.util.List;
 import java.util.Arrays;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -11,9 +14,11 @@ import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.StudentMapper;
 import com.fc.v2.mapper.auto.TSysRoleUserMapper;
+import com.fc.v2.model.auto.Class;
 import com.fc.v2.model.auto.Student;
 import com.fc.v2.model.auto.StudentExample;
 import com.fc.v2.model.auto.TSysRoleUser;
+import com.fc.v2.model.auto.TsysUser;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.util.MD5Util;
 import com.fc.v2.util.SnowflakeIdWorker;
@@ -55,7 +60,9 @@ public class StudentService implements BaseService<Student, StudentExample>{
 	        //	testExample.setOrderByClause("student_id ASC");
 	        //}
 	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
-	        List<Student> list= studentMapper.selectByExample(testExample);
+	        Subject currentUser = SecurityUtils.getSubject();
+	        TsysUser tu = (TsysUser) currentUser.getPrincipal();
+	        List<Student> list = studentMapper.selectBySchoolId(tu.getSchoolId());
 	        PageInfo<Student> pageInfo = new PageInfo<Student>(list);
 	        return  pageInfo;
 	 }
@@ -94,15 +101,10 @@ public class StudentService implements BaseService<Student, StudentExample>{
 				
 		//添加雪花主键id
 
-		StringBuilder stringBuilder = new StringBuilder();
-		String sc = stringBuilder.append('X')
-				.append(record.getStudentIdcard()).toString();
-		record.setStudentId(sc);
-		record.setPassword(MD5Util.encode(record.getPassword()));
 		
 		int r = studentMapper.insertSelective(record);
 		
-			 TSysRoleUser roleUser=new TSysRoleUser(SnowflakeIdWorker.getUUID(), sc,"889159217641033728");
+			 TSysRoleUser roleUser=new TSysRoleUser(SnowflakeIdWorker.getUUID(), record.getStudentId(),"889159217641033728");
 			 tSysRoleUserMapper.insertSelective(roleUser);
 		
 		return r;

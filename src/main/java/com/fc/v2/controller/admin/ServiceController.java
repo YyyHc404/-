@@ -12,6 +12,7 @@ import com.fc.v2.service.MajorService;
 import com.fc.v2.service.SchoolService;
 import com.fc.v2.service.StudentService;
 import com.fc.v2.shiro.util.ShiroUtils;
+import com.fc.v2.util.ShiorUtil;
 import com.fc.v2.model.auto.Class;
 import com.fc.v2.model.auto.Depart;
 import com.fc.v2.model.auto.Major;
@@ -82,7 +83,7 @@ public class ServiceController extends BaseController {
 	 */
 	@ApiOperation(value = "展示页面", notes = "展示页面")
 	@GetMapping("/view")
-	@RequiresPermissions("student:view")
+	@RequiresPermissions("index:view")
 	public void view(ModelMap model, HttpServletRequest hrq,HttpServletResponse hrp) throws IOException, ServletException {
 		Subject currentUser = SecurityUtils.getSubject();
 		TsysUser cur = (TsysUser) currentUser.getPrincipal();
@@ -95,13 +96,13 @@ public class ServiceController extends BaseController {
 		}else if( role.equals("manager") ) {
 			hrq.getRequestDispatcher("manager/index").forward(hrq, hrp);
 		}else {
-			hrq.getRequestDispatcher("manager/index").forward(hrq, hrp);
+			hrq.getRequestDispatcher("supermanager/index").forward(hrq, hrp);
 		}	
 	}
 	
 	//返回学生用户首页
 		@GetMapping("/student/index")
-		@RequiresPermissions("student:view")
+		@RequiresPermissions("index:student:view")
 	    public String stuIndex(ModelMap model)
 	    {
 			Subject currentUser = SecurityUtils.getSubject();
@@ -128,9 +129,9 @@ public class ServiceController extends BaseController {
 		
 		
 		//返回学生用户首页
-		@GetMapping("/manager/index")
+		@GetMapping("/supermanager/index")
 		@RequiresPermissions("system:service:view")
-		public String manIndex(ModelMap model,HttpServletRequest request)
+		public String superManIndex(ModelMap model,HttpServletRequest request)
 		{
 					
 			List<SysNotice> sysNotices = sysNoticeService.getNEW();
@@ -164,6 +165,21 @@ public class ServiceController extends BaseController {
 			model.addAttribute("sysOperLog", sysOperLog);
 			return  prefix+"/list";
 			}
+		
+		@GetMapping("/manager/index")
+		@RequiresPermissions("index:manager:view")
+		public String manIndex(ModelMap model,HttpServletRequest request)
+		{
+			TsysUser cu = ShiorUtil.getCurrentUser();
+			String id = cu.getId();
+			
+			School sc = schoolService.selectByPrimaryKey(cu.getSchoolId());
+			
+			model.addAttribute("id", id);
+			model.addAttribute("manageSchool", sc);
+			model.addAttribute("name", cu.getUsername());
+			return  "gen/basic/index";
+		}
 		
 }
 

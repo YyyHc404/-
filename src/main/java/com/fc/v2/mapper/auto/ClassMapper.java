@@ -26,7 +26,10 @@ public interface ClassMapper {
     int insert(Class record);
 
     int insertSelective(Class record);
-
+    
+   
+    List<Class> selectBySchoolId(String schoolId);
+    
     List<Class> selectByExample(ClassExample example);
 		
     Class selectByPrimaryKey(String id);

@@ -12,6 +12,7 @@ import com.fc.v2.service.MajorService;
 import com.fc.v2.service.SchoolService;
 import com.fc.v2.service.StudentService;
 import com.fc.v2.util.DateUtils;
+import com.fc.v2.util.MD5Util;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -125,10 +126,25 @@ public class StudentController extends BaseController{
 	@RequiresPermissions("gen:student:add")
 	@ResponseBody
 	public AjaxResult add(studentBO sb){
+		
+		Student student = sb.getStudent();
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		String sc = stringBuilder.append('X')
+				.append(student.getStudentIdcard()).toString();
+		Student exsit = studentService.selectByPrimaryKey(sc);
+		if (exsit != null) {
+			return error("学生已经存在");
+		}
+		student.setPassword(NORMALPSW);
+		
+		student.setStudentId(sc);
+		student.setPassword(MD5Util.encode(student.getPassword()));
+		
 		Subject currentUser = SecurityUtils.getSubject();
 		TsysUser t = (TsysUser)currentUser.getPrincipal();
 		
-		Student student = sb.getStudent();
+		
 		com.fc.v2.model.auto.Class t_class = sb.getClas();
 		t_class.setSchoolId(t.getSchoolId());
 		
@@ -150,17 +166,20 @@ public class StudentController extends BaseController{
 		t_class.setClassName(className);
 		String cc = classService.insertSelectives(t_class);
 
+		
+		
+		
 		if(cc == null){
 			return error("class添加失败");
 		}
-		student.setPassword(NORMALPSW);
+		
 		student.setClassCode(cc);
 		int b=studentService.insertSelective(student);
 		
 		if(b>0){
 			return success();
 		}else{
-			return error("class添加失败");
+			return error("添加失败");
 		}
 		
 	}
