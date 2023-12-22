@@ -78,10 +78,13 @@ public class MyShiroRealm extends AuthorizingRealm {
 				userInfo = new TsysUser(stu.getStudentId(),stu.getStudentId(),stu.getPassword(),"0000","student");
 				
 			}
+		}else if(userInfo.getSchoolId().equals("0000")){
+			userInfo.setRole("supermanager");
+			
 		}else {
 			userInfo.setRole("manager");
-			
 		}
+		
 		authenticationInfo = new SimpleAuthenticationInfo(
 				userInfo, // 用户对象
 				userInfo.getPassword(), // 密码

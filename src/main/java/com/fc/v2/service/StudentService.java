@@ -101,15 +101,10 @@ public class StudentService implements BaseService<Student, StudentExample>{
 				
 		//添加雪花主键id
 
-		StringBuilder stringBuilder = new StringBuilder();
-		String sc = stringBuilder.append('X')
-				.append(record.getStudentIdcard()).toString();
-		record.setStudentId(sc);
-		record.setPassword(MD5Util.encode(record.getPassword()));
 		
 		int r = studentMapper.insertSelective(record);
 		
-			 TSysRoleUser roleUser=new TSysRoleUser(SnowflakeIdWorker.getUUID(), sc,"889159217641033728");
+			 TSysRoleUser roleUser=new TSysRoleUser(SnowflakeIdWorker.getUUID(), record.getStudentId(),"889159217641033728");
 			 tSysRoleUserMapper.insertSelective(roleUser);
 		
 		return r;

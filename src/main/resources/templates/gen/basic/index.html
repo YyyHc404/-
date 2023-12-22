@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	
+    <th:block th:include="include :: header('列表')"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+<div class="layui-card-body">
+    <!-- 根据type属性的值来决定展示不同的内容 -->
+<!--     <div th:each="row : ${user}" > -->
+<!--         展示输入框 -->
+<!--         <label class="layui-form-label" th:text="${row.attribute}"></label> -->
+<!--         <div th:value="${row.value}" layui-input-inline layui-input-wrap></div> -->
+		
+<!--         展示按钮，并添加事件 -->
+<!--         <button th:if="${row.type eq '1'}"  lay-on="${row.callback}" th:text="${row.buttonText}"></button> -->
+<!--     </div> -->
+<div>		
+							<div class="layui-form-item">
+			                    <label class="layui-form-label">管理员姓名</label>
+			                    <div class="layui-input-block">
+			                         <div th:text="${name}" layui-input-inline layui-input-wrap></div>
+			                    </div>
+			                </div>
+			                 <div class="layui-form-item">
+			                    <label class="layui-form-label">管理员ID</label>
+			                    <div class="layui-input-block">
+			                         <div th:text="${id}" layui-input-inline layui-input-wrap></div>
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">所管理的学校</label>
+			                    <div class="layui-input-block">
+			                         <div th:text="${manageSchool.schoolName}" layui-input-inline layui-input-wrap></div>
+			                    </div>
+			                </div>
+			               
+			                
+<!-- 			                <div class="layui-form-item"> -->
+<!-- 							    <label class="layui-form-label">性别</label> -->
+<!-- 							   <div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="admissionTime" autocomplete="off" class="layui-input" th:value="${gender}" readonly> -->
+<!-- 			                    </div> -->
+<!-- 							</div> -->
+			                
+<!-- 							<div class="layui-form-item"> -->
+<!-- 			                    <label class="layui-form-label">入学日期</label> -->
+<!-- 			                    <div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="admissionTime" autocomplete="off" placeholder="" class="layui-input" th:value="${ey}" readonly> -->
+<!-- 			                    </div> -->
+<!-- 			                </div> -->
+<!-- 			                <div class="layui-form-item"> -->
+<!-- 						    	<label class="layui-form-label">学校</label> -->
+<!-- 						    	<div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="schoolName" autocomplete="off" placeholder="" class="layui-input" th:value="${schoolInfo.schoolName}" readonly> -->
+<!-- 			                    </div> -->
+						    	
+<!-- 						  	</div> -->
+<!-- 			                <div class="layui-form-item"> -->
+<!-- 						    	<label class="layui-form-label">院系</label> -->
+<!-- 						    	<div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="departName" autocomplete="off" placeholder="" class="layui-input" th:value="${departInfo.departName}" readonly> -->
+<!-- 			                    </div> -->
+						    	
+<!-- 						  	</div> -->
+						  	
+<!-- 						  	<div class="layui-form-item"> -->
+<!-- 						    	<label class="layui-form-label">专业</label> -->
+<!-- 						    	<div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="major" th:value="${majorInfo.majorName}" autocomplete="off" placeholder="" class="layui-input" readonly> -->
+<!-- 			                    </div> -->
+<!-- 						  	</div> -->
+						  	
+<!-- 						  	<div class="layui-form-item"> -->
+<!-- 						    	<label class="layui-form-label">班级名称</label> -->
+<!-- 						    	<div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="departName" value="" autocomplete="off" placeholder="" class="layui-input" th:value="${classInfo.className}" readonly> -->
+<!-- 			                    </div> -->
+<!-- 						  	</div> -->
+						  	
+						  
+											
+							
+									
+											
+						
+<!-- 							    <div class="layui-form-item"> -->
+<!-- 								    <label class="layui-form-label">名族</label> -->
+<!-- 								     <div class="layui-input-block"> -->
+<!-- 			                        	<input type="text" name="ethnic" autocomplete="off" placeholder="请输入籍贯" class="layui-input" th:value="${studentInfo.ethnic}"> -->
+<!-- 			                   		</div> -->
+<!-- 								</div> -->
+							
+
+									
+											
+<!-- 							<div class="layui-form-item"> -->
+<!-- 			                    <label class="layui-form-label">籍贯</label> -->
+<!-- 			                    <div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="origin" autocomplete="off" placeholder="请输入籍贯" class="layui-input" th:value="${studentInfo.origin}"> -->
+<!-- 			                    </div> -->
+<!-- 			                </div> -->
+									
+											
+<!-- 							<div class="layui-form-item"> -->
+<!-- 			                    <label class="layui-form-label">家庭住址</label> -->
+<!-- 			                    <div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="address" autocomplete="off" placeholder="请输入家庭住址" class="layui-input" th:value="${studentInfo.address}"> -->
+<!-- 			                    </div> -->
+<!-- 			                </div> -->
+									
+											
+<!-- 							<div class="layui-form-item"> -->
+<!-- 			                    <label class="layui-form-label">毕业学校</label> -->
+<!-- 			                    <div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="graduateName" autocomplete="off" placeholder="请输入毕业学校" class="layui-input" th:value="${studentInfo.graduateName}"> -->
+<!-- 			                    </div> -->
+<!-- 			                </div> -->
+							
+									
+<!-- 							<div class="layui-form-item"> -->
+<!-- 			                    <label class="layui-form-label">政治面貌</label> -->
+<!-- 			         			<div class="layui-input-block"> -->
+<!-- 			                        <input type="text" name="political" autocomplete="off" th:value="${studentInfo.political}" class="layui-input"> -->
+<!-- 			                    </div> -->
+<!-- 			                </div> -->
+			                
+			                
+<!-- 							 <div class="layui-form-item"> -->
+<!-- 							    <div class="layui-inline"> -->
+<!-- 							      <label class="layui-form-label">手机号</label> -->
+<!-- 							      <div class="layui-input-inline layui-input-wrap"> -->
+<!-- 							        <span th:text="${studentInfo.phoneNumber}"></span> -->
+<!-- 							      </div> -->
+<!-- 							      <div class="layui-form-mid" style="padding: 0!important;">  -->
+<!-- 							        <button type="button" class="layui-btn layui-btn-primary" lay-on="editPhoneNumber">修改手机号</button> -->
+<!-- 							      </div> -->
+<!-- 							    </div> -->
+<!-- 							  </div>		 -->
+							 
+<!-- 						  	<div class="layui-form-item"> -->
+<!-- 							    <div class="layui-input-block"> -->
+<!-- 							      <button type="button" class="layui-btn" lay-filter="demo1"  lay-on="editPassWord">修改密码</button> -->
+<!-- 							    </div> -->
+<!-- 							  </div>	 -->
+							
+    						           
+	</div>
+  
+
+</div>
+	
+</div>
+
+</body>
+<th:block th:include="include :: footer"/>
+
+<script>
+	
+	layui.use(['layer','util'], function () {
+		 var $ = layui.$;
+		  var layer = layui.layer;
+		  var util = layui.util;
+		let MODULE_PATH = rootPath+"/BasicController/";
+       util.event('lay-on', {
+    	   
+    	    editPhoneNumber: function(){
+    	    	 layer.open({
+    	                type: 2,
+    	                title: '修改手机号',
+    	                shade: 0.1,
+    	                area: ['500px', '500px'],
+    	                content: MODULE_PATH + 'editphone'
+    	            });
+			 },
+			 editPassWord: function(){
+    	    	 layer.open({
+    	                type: 2,
+    	                title: '修改密码',
+    	                shade: 0.1,
+    	                area: ['500px', '500px'],
+    	                content: MODULE_PATH + 'editpassword'
+    	            });
+			 }
+		  
+		  })
+		
+	})
+</script>
+</html>
