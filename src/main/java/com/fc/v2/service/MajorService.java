@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import cn.hutool.core.util.StrUtil;
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
+import com.fc.v2.mapper.auto.ClassMapper;
 import com.fc.v2.mapper.auto.MajorMapper;
 import com.fc.v2.model.auto.Major;
 import com.fc.v2.model.auto.MajorExample;
@@ -28,6 +29,8 @@ import com.fc.v2.util.StringUtils;
 public class MajorService implements BaseService<Major, MajorExample>{
 	@Autowired
 	private MajorMapper majorMapper;
+	@Autowired
+	private ClassMapper classMapper;
 	
       	   	      	      	
 	/**
@@ -62,7 +65,12 @@ public class MajorService implements BaseService<Major, MajorExample>{
 			List<String> lista=ConvertUtil.toListStrArray(ids);
 			MajorExample example=new MajorExample();
 			example.createCriteria().andMajorIdIn(lista);
-			return majorMapper.deleteByExample(example);
+			try{
+				majorMapper.deleteByExample(example);
+			}catch(Exception e) {
+				return 0;
+			}
+			return 1;
 			
 				
 	}

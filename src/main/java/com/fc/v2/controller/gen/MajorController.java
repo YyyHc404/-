@@ -86,9 +86,6 @@ public class MajorController extends BaseController{
 	@RequiresPermissions("gen:major:add")
 	@ResponseBody
 	public AjaxResult add(Major major){
-		if (StringUtils.isEmpty(major.getMajorId())) {
-			return error();
-		}
 		int b=majorService.insertSelective(major);
 		if(b>0){
 			return success();
@@ -112,7 +109,7 @@ public class MajorController extends BaseController{
 		if(b>0){
 			return success();
 		}else{
-			return error();
+			return error("专业已经被引用无法删除");
 		}
 	}
 	

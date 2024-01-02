@@ -3,6 +3,8 @@ package com.fc.v2.util;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.text.StrBuilder;
 import org.springframework.util.AntPathMatcher;
@@ -31,7 +33,15 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     {
         return value != null ? value : defaultValue;
     }
-
+    public static String randomCode(int length) {
+    	 String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    	 StringBuilder codeGenerator = new StringBuilder();
+    	 Random random = new Random();
+    	 for (int i = 0; i < length; i++) {
+    		 codeGenerator.append(characters.charAt(random.nextInt(characters.length()))); 
+    	 }
+    	 return codeGenerator.toString();
+    }
     /**
      * * 判断一个Collection是否为空， 包含List，Set，Queue
      * 

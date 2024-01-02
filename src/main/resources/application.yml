@@ -8,13 +8,13 @@ fuce:
   copyright-year: 2018
   #邮件功能
   #邮箱发送smtp
-  email-smtp: smtp.sina.com
+  email-smtp: smtp.qq.com
   #邮箱发送端口
   email-port: 465
   #发送邮箱登录账号
-  email-account: 1@sina.com
+  email-account: 2739606014@qq.com
   #发送邮箱登录密码
-  email-password: f1
+  email-password: boflldoqwaipdefi
   #实例演示开关 启动该模式删除增加修改会弹出演示模式提示框
   demo-enabled: false
   #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
@@ -40,11 +40,19 @@ server :
       min-spare: 5
 spring :
   # 环境 dev|test|prod
+  http:
+    encoding:
+      charset: UTF-8
+      enable: true
   profiles :
     active : dev
     #引入其他配置文件，例如ftpHX 未配置文件application-ftpHX.yml
     #include: ftpHX,ftpCloud
   servlet:
+    request:
+      charset: UTF-8
+    response:
+      charset: UTF-8
     multipart:
       #设置总上传的数据大小
       max-request-size: 100MB
@@ -79,7 +87,7 @@ spring :
   redis:
     ssl: false
     database: 0
-    host: 127.0.0.1
+    host: redis-master
     port: 6379
     password: 
     timeout: 1000
