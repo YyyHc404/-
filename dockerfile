@@ -1,4 +1,4 @@
-FROM ultra:v1
+FROM yyyhc404/xinxuewang:ultra
 LABEL maintainer="YyyHc404"
 WORKDIR /app
 COPY target/v2-0.0.1-SNAPSHOT.war /app/admin.war
