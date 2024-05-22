@@ -47,6 +47,8 @@ public class ShiroFilterMapFactory {
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		// 对所有用户认证
 		filterChainDefinitionMap.put("/static/**", "anon");
+		filterChainDefinitionMap.put("/BasicController/editpassword/**", "anon");
+		filterChainDefinitionMap.put("/BasicController/editphone/**", "anon");
 		filterChainDefinitionMap.put("/admin/login", "anon");
 		filterChainDefinitionMap.put("/admin/logout", "logout");
 		//手机登录

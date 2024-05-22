@@ -29,18 +29,24 @@ public class BasicController extends BaseController{
 	@Autowired
 	private BasicService bs;
 	
-	
-	@GetMapping("/editphone")
+	//
+	@GetMapping("/editphone/phone")
     public String editPhone()
     {
         return prefix+"/editphone";
     }
 	
 	
-	@GetMapping("/editpassword")
-    public String editPassWord()
+	
+	@GetMapping("/logined/editpassword")
+    public String loginEditPassWord()
     {
         return prefix + "/editpassword";
+    }
+	@GetMapping("/editpassword/email")
+    public String editPassWordByEmail()
+    {
+        return prefix + "/editpasswordemail";
     }
 	//获取验证码，Redis中以邮箱、验证码(字母数字随机组合的6位验证码)为键值对
 	@ApiOperation(value = "生成验证码", notes = "生成")
